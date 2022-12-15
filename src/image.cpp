@@ -17,6 +17,8 @@ using namespace ensiie;
 #include <vector>
 #include <cstring>
 
+#include <thread>
+
 /**
  * @brief Split a string into tokens.
  *
@@ -128,25 +130,41 @@ Image &Image::operator=(Image &&other)
     return *this;
 }
 
+void threadApplyFilter(const Filter &filter, const Image &src, Image &dst, int index) //Function used to apply the filter on a part of the image.
+{
+    unsigned int nbThreads = std::thread::hardware_concurrency();
+    size_t width = src.getWidth();
+    for (size_t i = 1; i < src.getHeight() - 1; i++) // Ignoring edge pixels.
+    {
+        for (size_t j = 1 + index; j < src.getWidth() - 1; j+= nbThreads)
+        {
+            double value = src[i - 1] * filter[0][0]                   //Computing the new value with the filter.
+                            + src[i] * filter[0][1] 
+                            + src[i + 1] * filter[0][2] 
+                            + src[i - 1 + width] * filter[1][0] 
+                            + src[i + width] * filter[1][1] 
+                            + src[i + 1 + width] * filter[1][2] 
+                            + src[i - 1 + 2 * width] * filter[2][0] 
+                            + src[i + 2 * width] * filter[2][1] 
+                            + src[i + 1 + 2 * width] * filter[2][2];
+            
+            dst[i * width + j] = int(value) % 255;                 //Storing the new value modulo 255.
+        }
+    }
+}
+
 void Image::applyFilter(const Filter &filter)
 {
+    unsigned int nbThreads = std::thread::hardware_concurrency(); //Getting the number of threads available on the computer. Takes in account the hyperthreading.
+    std::vector<std::thread> threads(nbThreads);                  //Creating the threads.
     Image cpy = *this;
-    for (size_t i = 1; i < height - 1; i++) // Ignoring edge pixels.
+    for (size_t i = 0; i < nbThreads; i++)                        //Starting the threads.
     {
-        for (size_t j = 1; j < width - 1; j++)
-        {
-            double value = data[i - 1] * filter[0][0]                   //Computing the new value with the filter.
-                            + data[i] * filter[0][1] 
-                            + data[i + 1] * filter[0][2] 
-                            + data[i - 1 + width] * filter[1][0] 
-                            + data[i + width] * filter[1][1] 
-                            + data[i + 1 + width] * filter[1][2] 
-                            + data[i - 1 + 2 * width] * filter[2][0] 
-                            + data[i + 2 * width] * filter[2][1] 
-                            + data[i + 1 + 2 * width] * filter[2][2];
-            
-            cpy.data[i * width + j] = int(value) % 255;                 //Storing the new value modulo 255.
-        }
+        threads[i] = std::thread(threadApplyFilter, filter, *this, std::ref(cpy), i);
+    }
+    for (size_t i = 0; i < nbThreads; i++) //Creating the threads.
+    {
+        threads[i].join();
     }
     *this = cpy;
 }
