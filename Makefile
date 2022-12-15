@@ -1,5 +1,5 @@
 LCC=g++
-WCC=x86_64-w64-mingw32-g++
+WCC=x86_64-w64-mingw32-g++-posix
 
 ifneq ($(RELEASE), TRUE)
 	CFLAGS=-Wall -Wextra -g -std=c++2a --shared -fPIC
@@ -29,3 +29,7 @@ obj/image.obj : src/image.cpp header/filter.h header/image.h
 
 doc :
 	doxygen Doxyfile
+
+clean :
+	rm -vf obj/*.o obj/*.obj bin/*.so bin/*.lib
+	@echo "Cleaned"
