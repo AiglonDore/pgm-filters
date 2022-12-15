@@ -96,6 +96,23 @@ namespace ensiie {
          * @return unsigned char Value of the pixel.
          */
         unsigned char operator()(size_t x, size_t y) const { return data[y * width + x]; };
+        
+        /**
+         * @brief Get the value of a pixel.
+         * 
+         * @param i Index.
+         * @return unsigned char Value of the pixel.
+         */
+        unsigned char operator[](size_t i) const { return data[i]; };
+
+        /**
+         * @brief Get the value of a pixel.
+         * 
+         * @param x X coordinate of the pixel.
+         * @param y Y coordinate of the pixel.
+         * @return unsigned char& Value of the pixel.
+         */
+        unsigned char& operator[](size_t i) { return data[i]; };
 
         /**
          * @brief Apply a filter to the image. 
