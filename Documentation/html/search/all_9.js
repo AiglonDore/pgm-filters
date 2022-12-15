@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['_7efilter_20',['~Filter',['../classensiie_1_1_filter.html#a502ee334d42eac3edbaf32b599f9c35e',1,'ensiie::Filter']]],
-  ['_7eimage_21',['~Image',['../classensiie_1_1_image.html#a0294f63700543e11c0f0da85601c7ae5',1,'ensiie::Image']]]
+  ['threadapplyfilter_20',['threadApplyFilter',['../image_8cpp.html#a043456c5361f85406b7dd829f73b8d7f',1,'image.cpp']]]
 ];

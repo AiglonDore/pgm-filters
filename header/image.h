@@ -94,12 +94,13 @@ namespace ensiie {
          * @param x X coordinate of the pixel.
          * @param y Y coordinate of the pixel.
          * @return unsigned char Value of the pixel.
+         * @warning If y * width + x is out of bounds, the behavior is undefined.
          */
         unsigned char operator()(size_t x, size_t y) const { return data[y * width + x]; };
         
         /**
          * @brief Get the value of a pixel.
-         * 
+         * @warning If i is out of bounds, the behavior is undefined.
          * @param i Index.
          * @return unsigned char Value of the pixel.
          */
@@ -108,8 +109,9 @@ namespace ensiie {
         /**
          * @brief Get the value of a pixel.
          * 
-         * @param x X coordinate of the pixel.
-         * @param y Y coordinate of the pixel.
+         * @param i Indeox of the pixel.
+         * @warning If the pixel is modified, the image will be modified.
+         * @warning If i is out of bounds, the behavior is undefined.
          * @return unsigned char& Value of the pixel.
          */
         unsigned char& operator[](size_t i) { return data[i]; };

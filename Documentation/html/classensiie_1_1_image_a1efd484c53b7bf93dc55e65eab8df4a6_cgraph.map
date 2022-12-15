@@ -1,0 +1,6 @@
+<map id="ensiie::Image::applyFilter" name="ensiie::Image::applyFilter">
+<area shape="rect" id="node1" title="Apply a filter to the image." alt="" coords="5,31,192,57"/>
+<area shape="rect" id="node2" href="$image_8cpp.html#a043456c5361f85406b7dd829f73b8d7f" title="Apply a filter on the image by using a thread." alt="" coords="240,31,375,57"/>
+<area shape="rect" id="node3" href="$classensiie_1_1_image.html#acf3482000725658a2129ea69840d5e9b" title="Get the height of the image." alt="" coords="423,5,605,32"/>
+<area shape="rect" id="node4" href="$classensiie_1_1_image.html#a5cff6577c846048d4302d1638767a806" title="Get the width of the image." alt="" coords="425,56,603,83"/>
+</map>

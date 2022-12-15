@@ -80,10 +80,11 @@ $(function() {
 <code>#include &lt;fstream&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
 <code>#include &lt;cstring&gt;</code><br />
+<code>#include &lt;thread&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for image.cpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="image_8cpp__incl.svg" width="438" height="262"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="image_8cpp__incl.svg" width="526" height="262"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="image_8cpp_source.html">Go to the source code of this file.</a></p>
@@ -93,6 +94,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a4c8eae75340c523bdcb08cd1d371e2c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="image_8cpp.html#a4c8eae75340c523bdcb08cd1d371e2c0">splitString</a> (const std::string &amp;str, std::vector&lt; std::string &gt; &amp;tokens, const std::string &amp;delimiters=&quot; &quot;)</td></tr>
 <tr class="memdesc:a4c8eae75340c523bdcb08cd1d371e2c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Split a string into tokens.  <a href="image_8cpp.html#a4c8eae75340c523bdcb08cd1d371e2c0">More...</a><br /></td></tr>
 <tr class="separator:a4c8eae75340c523bdcb08cd1d371e2c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a043456c5361f85406b7dd829f73b8d7f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="image_8cpp.html#a043456c5361f85406b7dd829f73b8d7f">threadApplyFilter</a> (const <a class="el" href="classensiie_1_1_filter.html">Filter</a> &amp;filter, const <a class="el" href="classensiie_1_1_image.html">Image</a> &amp;src, <a class="el" href="classensiie_1_1_image.html">Image</a> &amp;dst, int index)</td></tr>
+<tr class="memdesc:a043456c5361f85406b7dd829f73b8d7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply a filter on the image by using a thread.  <a href="image_8cpp.html#a043456c5361f85406b7dd829f73b8d7f">More...</a><br /></td></tr>
+<tr class="separator:a043456c5361f85406b7dd829f73b8d7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implements <a class="el" href="image_8h.html">image.h</a>. </p>
@@ -145,11 +149,74 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="image_8cpp_source.html#l00027">27</a> of file <a class="el" href="image_8cpp_source.html">image.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="image_8cpp_source.html#l00029">29</a> of file <a class="el" href="image_8cpp_source.html">image.cpp</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="image_8cpp_a4c8eae75340c523bdcb08cd1d371e2c0_icgraph.svg" width="306" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a043456c5361f85406b7dd829f73b8d7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a043456c5361f85406b7dd829f73b8d7f">&#9670;&nbsp;</a></span>threadApplyFilter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void threadApplyFilter </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classensiie_1_1_filter.html">Filter</a> &amp;&#160;</td>
+          <td class="paramname"><em>filter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classensiie_1_1_image.html">Image</a> &amp;&#160;</td>
+          <td class="paramname"><em>src</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classensiie_1_1_image.html">Image</a> &amp;&#160;</td>
+          <td class="paramname"><em>dst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Apply a filter on the image by using a thread. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filter</td><td>Filter. </td></tr>
+    <tr><td class="paramname">src</td><td>Source image. </td></tr>
+    <tr><td class="paramname">dst</td><td>Destination. </td></tr>
+    <tr><td class="paramname">index</td><td>Index of the thread. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="image_8cpp_source.html#l00142">142</a> of file <a class="el" href="image_8cpp_source.html">image.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="image_8cpp_a043456c5361f85406b7dd829f73b8d7f_cgraph.svg" width="376" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="image_8cpp_a043456c5361f85406b7dd829f73b8d7f_icgraph.svg" width="615" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>

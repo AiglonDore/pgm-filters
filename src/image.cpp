@@ -130,6 +130,15 @@ Image &Image::operator=(Image &&other)
     return *this;
 }
 
+
+/**
+ * @brief Apply a filter on the image by using a thread.
+ * 
+ * @param filter Filter.
+ * @param src Source image.
+ * @param dst Destination.
+ * @param index Index of the thread.
+ */
 void threadApplyFilter(const Filter &filter, const Image &src, Image &dst, int index) //Function used to apply the filter on a part of the image.
 {
     unsigned int nbThreads = std::thread::hardware_concurrency();
