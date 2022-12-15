@@ -157,7 +157,7 @@ void threadApplyFilter(const Filter &filter, const Image &src, Image &dst, int i
                             + src[i + 2 * width] * filter[2][1] 
                             + src[i + 1 + 2 * width] * filter[2][2];
             
-            dst[i * width + j] = int(value) % 255;                 //Storing the new value modulo 255.
+            dst[i * width + j] = int(value) % 256;                 //Storing the new value modulo 256.
         }
     }
 }
